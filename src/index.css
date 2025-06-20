@@ -1,0 +1,128 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+}
+
+body{
+   background-color: rgba(249, 250, 251, 0.185);
+   /* overflow: hidden; */
+   /* overflow-x: hidden; */
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.swiper-pagination{
+  text-align: start !important;
+}
+.img-clip {
+clip-path:polygon(
+  0% 15%,
+  0 0,
+  15% 0%,
+  85% 0%,
+  100% 0,
+  100% 15%,
+  106% 69%,
+  85% 70%,
+  83% 101%,
+  12% 101%,
+  0 102%,
+  0% 85%
+)
+
+
+}
+
+.slick-prev:before, .slick-next:before,.slick-prev, .slick-next{
+  display: none;
+}
+.slick-dots li button:before{
+  display: none;
+}
+
+.shape-radius {
+  position: absolute;
+  bottom: 124px;             
+  right: 45px;               
+  width: 36px;         
+  height: 38px;             
+  background-color: white;  
+   border-top-left-radius: 100px;
+  z-index: 10;
+}
+/* Add this to your global CSS file */
+.slick-slider {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.slick-list {
+  overflow: hidden;
+  padding: 10px 0 !important; /* Add some padding for hover effects */
+}
+
+.slick-track {
+  display: flex;
+  align-items: stretch;
+}
+
+.swiper-pagination-bullet{
+  /* background: red !important; */
+  height: 20px !important;
+  width: 40px !important;
+  border: 1px solid red !important;
+  /* transform: skew(20deg); */
+}
+
+@media(min-width:1500px) {
+  .img-clip {
+    clip-path: none;
+    width: 100%;
+  }
+}
+@media (min-width: 1400px) {
+  .img-clip {
+    clip-path: polygon(
+      0% 15%,
+  0 0,
+  15% 0%,
+  85% 0%,
+  100% 0,
+  100% 15%,
+  106% 69%,
+  85% 133%,
+  83% 101%,
+  12% 101%,
+  0 102%,
+  0% 85%
+    );
+  }
+}
+
+@media (min-width: 1000px) {
+  .img-clip {
+    clip-path: polygon(
+      0% 15%,
+  0 0,
+  15% 0%,
+  85% 0%,
+  100% 0,
+  100% 15%,
+  106% 69%,
+  85% 133%,
+  83% 101%,
+  12% 101%,
+  0 102%,
+  0% 85%
+    );
+  }
+}
+/* For outlined text (like your image) */
+.outlined-text {
+  color: transparent;
+  -webkit-text-stroke: 1px #0c0101;
+}
