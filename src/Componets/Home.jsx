@@ -226,7 +226,7 @@ function Home() {
 
     if (!isInCart) {
       dispatch(Cart_action(cart, q)).then(() => {
-        dispatch(cart_get_Acation())  
+        dispatch(cart_get_Acation())
       })
     } else {
       toast.error("Already in cart")
@@ -249,7 +249,7 @@ function Home() {
       <Chatbot />
 
       {/* slider */}
-      <div className='h-[150vh]  2xl:h-screen  xl:h-screen lg:h-screen sm:h-screen '>
+      <div className='h-screen  2xl:h-screen  xl:h-screen lg:h-screen sm:h-screen '>
         <Swiper
           spaceBetween={50}
           modules={[Autoplay, Pagination]}
@@ -321,7 +321,7 @@ function Home() {
                     className="animate-shape 
                     animate__animated
                 animate__fadeInRight
-                  w-[120%] absolute sm:top-[100px] xl:top-[-20px] lg:top-[-20px] md:top-[40px] top-[10px] right-[-50px] max-[1399px]:right-[-30px] max-[1199px]:w-[125%] max-[991px]:w-[100%] max-[991px]:top-[0px] max-[575px]:right-[0] max-[420px]:w-[110%] max-[420px]:right-[-30px]"
+                  w-[120%] absolute sm:top-[95px] xl:top-[-20px] lg:top-[-20px] md:top-[40px] top-[10px] right-[-50px] max-[1399px]:right-[-30px] max-[1199px]:w-[125%] max-[991px]:w-[100%] max-[991px]:top-[0px] max-[575px]:right-[0] max-[420px]:w-[110%] max-[420px]:right-[-30px]"
                   >
                     <linearGradient id="shape_1" x1="100%" x2="0%" y1="100%" y2="0%" />
                     <path fill="white">
@@ -542,10 +542,10 @@ function Home() {
         </Swiper >
       </div>
 
-      <div className='grid  2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 2xl:h-[125vh] xl:h-[152vh] lg:h-[166vh] md:h-auto sm:h-[160vh] h-[110vh] relative overflow-hidden my-3'
+      <div className='grid  2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 2xl:h-[125vh] xl:h-[152vh] lg:h-[166vh] md:h-auto sm:h-[160vh] h-[60vh] relative overflow-hidden my-3'
       >
         <div className=' min-h-[76%] 2xl:h-[80%] xl:h-[80%] lg:h-[96%] h-full w-full rounded-xl lg:flex justify-center items-center relative  hidden'>
-          <div className='h-auto 2xl:h-[76%] xl:h-[100%] lg:h-[65%] relative w-full' data-aos="fade-right">
+          <div className='h-auto 2xl:h-[90%] xl:h-[100%] lg:h-[65%] relative w-full' data-aos="fade-right">
             {/* Main Image Container - maintains responsive behavior */}
             <div className='relative w-full h-full'>
               {/* Main Image */}
@@ -559,7 +559,7 @@ function Home() {
               <div className='
       absolute 
       right-0 
-      2xl:top-[75%] xl:top-[69%] lg:top-[58%] top-[65%]
+      2xl:top-[56%] xl:top-[69%] lg:top-[58%] top-[65%]
       2xl:right-[-1px] xl:right-[-1px]
     '>
                 <img
@@ -591,8 +591,8 @@ function Home() {
           </div>
         </div>
 
-        <div className='h-screen sm:h-[160vh] w-full' >
-          <div className='sm:h-[55%] h-[2s5%] flex justify-center items-center' data-aos="fade-left">
+        <div className='h-[80vh] sm:h-screen w-full' >
+          <div className='sm:h-[55%] h-[35%] flex justify-center items-center' data-aos="fade-left">
             <svg width="100%" height="100%" viewBox="0 0 800 200" className="w-full group lg:h-[165vh] md:h-screen sm:h-[70vh] h-[66vh] ">
               <defs>
                 <linearGradient id="light-gradient" x1="0%" y1="0%" x2="100%" y2="0%">

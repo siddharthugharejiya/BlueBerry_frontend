@@ -42,57 +42,35 @@ const SlickSliderComponent = () => {
   };
 
   return (
-    <div className="w-full max-w-[1200px] mx-auto sm:p-4 p-0 z-50 bg-white rounded-xl overflow-hidden]">
-      <div >
-        <Slider {...settings}>
-          <div className="px-2">
-
+    <div className="w-full max-w-[1200px] mx-auto sm:p-4 p-2 z-50 bg-white rounded-xl overflow-hidden">
+      <Slider {...settings}>
+        {/* Slide Item */}
+        {[1, 2, 3, 4].map((num, index) => (
+          <div key={index} className="px-2">
             <div className="flex justify-center items-center">
-              <div className="sm:h-[200px] h-[150px] w-full  border flex justify-center items-center flex-col rounded-2xl bg-[rgb(225_252_242)] group">
-                <img src="./1.svg" alt="Slide 1" className="w-[70%] h-[36%] group-hover:animate-bounce" />
-                <div className="font-semibold">vegetables</div>
-                <span className="text-sm text-gray-500">291 items</span>
+              <div
+                className={`
+              w-full 
+              flex flex-col justify-center items-center 
+              border rounded-2xl group 
+              bg-[${index % 3 === 0 ? "rgb(225_252_242)" : index % 3 === 1 ? "rgb(244_241_254)" : "rgb(251_249_228)"}]
+              h-[140px] sm:h-[170px] md:h-[150px] lg:h-[200px] xl:h-[220px]
+            `}
+              >
+                <img
+                  src={`./${num}.svg`}
+                  alt={`Slide ${num}`}
+                  className="w-[50%] h-[40%] sm:w-[60%] sm:h-[36%] object-contain group-hover:animate-bounce"
+                />
+                <div className="font-semibold text-sm sm:text-base md:text-lg">Vegetables</div>
+                <span className="text-xs sm:text-sm text-gray-500">291 items</span>
               </div>
             </div>
           </div>
-          <div className="px-2">
-
-
-            <div className="flex justify-center items-center">
-              <div className="sm:h-[200px] h-[150px] w-full border flex justify-center items-center flex-col rounded-2xl bg-[rgb(244_241_254)] group">
-                <img src="./2.svg" alt="Slide 1" className="w-[70%] h-[36%]  group-hover:animate-bounce" />
-                <div className="font-semibold">vegetables</div>
-                <span className="text-sm text-gray-500">291 items</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="px-2">
-
-
-            <div className="flex justify-center items-center">
-              <div className="sm:h-[200px] h-[150px] w-full border flex justify-center items-center flex-col rounded-2xl bg-[rgb(251_249_228)] group">
-                <img src="./3.svg" alt="Slide 1" className="w-[70%] h-[36%]  group-hover:animate-bounce" />
-                <div className="font-semibold">vegetables</div>
-                <span className="text-sm text-gray-500">291 items</span>
-              </div>
-            </div>
-
-          </div>
-          <div className="px-2">
-            <div className="flex justify-center items-center">
-              <div className="sm:h-[200px] h-[150px] w-full border flex justify-center items-center flex-col rounded-2xl bg-[rgb(225_252_242)] group">
-                <img src="./4.svg" alt="Slide 1" className="w-[70%] h-[36%]  group-hover:animate-bounce" />
-                <div className="font-semibold">vegetables</div>
-                <span className="text-sm text-gray-500">291 items</span>
-              </div>
-            </div>
-          </div>
-
-
-        </Slider>
-      </div>
+        ))}
+      </Slider>
     </div>
+
   );
 };
 
