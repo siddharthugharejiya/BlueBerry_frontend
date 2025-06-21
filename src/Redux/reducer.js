@@ -134,7 +134,7 @@ export const singlepag_reducer = (state = singlepageinistaial, { type, payload }
         case "single":
             return {
                 ...state,
-                data: payload
+                data: payload.data
             }
         default: return state
     }

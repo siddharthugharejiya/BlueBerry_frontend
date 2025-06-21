@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // register
 export const register_action = (state, nav) => async (dispatch) => {
     try {
-        await axios.post("http://localhost:9595/signup", state);
+        await axios.post("https://blueberry-backend-1.onrender.com/signup", state);
         toast.success("Registration successful! You can now log in.");
         nav("/login");
     } catch (error) {
@@ -20,7 +20,7 @@ export const register_action = (state, nav) => async (dispatch) => {
 // login
 export const login_action = (state, nav) => async (dispatch) => {
     try {
-        const res = await axios.post("http://localhost:9595/login", state);
+        const res = await axios.post("https://blueberry-backend-1.onrender.com/login", state);
         const token = res.data.token || res.data.Token;
         const decoded = jwtDecode(token);
         localStorage.setItem("Token", token);
@@ -45,7 +45,9 @@ export const login_action = (state, nav) => async (dispatch) => {
 // Product Get
 export const Product = () => async (dispatch) => {
     try {
-        const res = await axios.get("http://localhost:9595/product");
+        const res = await axios.get("https://blueberry-backend-1.onrender.com/product");
+        // console.log(res);
+
         dispatch({ type: GET, payload: res.data });
         // toast.success("Products fetched successfully.");
     } catch (err) {
@@ -58,13 +60,13 @@ export const Product = () => async (dispatch) => {
 export const product_add_action = (state) => async (dispatch) => {
     try {
         const token = localStorage.getItem("Token");
-        const res = await axios.post("http://localhost:9595/add", state, {
+        const res = await axios.post("https://blueberry-backend-1.onrender.com/add", state, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json",
             },
         });
-        dispatch({ type: "Posted_Product", payload: res.data });
+        dispatch({ type: "Posted_Product", payload: res.data })
         toast.success("Product added successfully.");
     } catch (err) {
         toast.error("Error adding product.");
@@ -75,11 +77,11 @@ export const product_add_action = (state) => async (dispatch) => {
 // Product Delete
 export const Product_del = (id) => async (dispatch) => {
     try {
-        const res = await axios.post(`http://localhost:9595/del/${id}`, {}, {
+        const res = await axios.post(`https://blueberry-backend-1.onrender.com/del/${id}`, {}, {
             headers: { "Content-Type": "application/json" }
         });
         toast.success("Product deleted successfully.");
-        console.log(res.data);
+        // console.log(res.data);
     } catch (err) {
         toast.error("Error deleting product.");
         console.error("Delete error:", err);
@@ -89,7 +91,7 @@ export const Product_del = (id) => async (dispatch) => {
 // Product Edit Get
 export const Product_edite_get = (id) => async (dispatch) => {
     try {
-        const res = await axios.get(`http://localhost:9595/edite/${id}`);
+        const res = await axios.get(`https://blueberry-backend-1.onrender.com/edite/${id}`);
         dispatch({ type: "GETTING_PRODUCT", payload: res.data });
         toast.success("Product data fetched for editing.");
     } catch (err) {
@@ -101,7 +103,7 @@ export const Product_edite_get = (id) => async (dispatch) => {
 // Product Edit Post
 export const product_edite_action = (id, state) => async (dispatch) => {
     try {
-        const res = await axios.post(`http://localhost:9595/edite/${id}`, state, {
+        const res = await axios.post(`https://blueberry-backend-1.onrender.com/edite/${id}`, state, {
             headers: { "Content-Type": "application/json" }
         });
         dispatch({ type: "Edite_Pro", payload: res.data.message });
@@ -116,25 +118,34 @@ export const product_edite_action = (id, state) => async (dispatch) => {
 export const Prodcuer_Filter_Action = (category) => async (dispatch) => {
     try {
         const url = category === "All"
-            ? `http://localhost:9595/product`
-            : `http://localhost:9595/product?category=${category}`;
+            ? `https://blueberry-backend-1.onrender.com/product`
+            : `https://blueberry-backend-1.onrender.com/product?category=${category}`;
 
         const res = await fetch(url);
         const data = await res.json();
 
-        dispatch({ type: "FILTER_PRODUCTS_BY_CATEGORY", payload: data.data });
-        // toast.success("Products filtered successfully.");
+        console.log("Filtered data:", data);
+
+        // ✅ Check if no products found
+        if (!data.success || data.data.length === 0) {
+            toast.info("No products found for this category.");
+            dispatch({ type: "FILTER_PRODUCTS_BY_CATEGORY", payload: [] });
+        } else {
+            dispatch({ type: "FILTER_PRODUCTS_BY_CATEGORY", payload: data.data });
+        }
+
     } catch (err) {
-        toast.error("Error filtering products.");
+        toast.error("Something went wrong while filtering.");
         console.error("Filter error:", err);
     }
 };
+
 
 // Add to Cart
 export const Cart_action = (product, quantity) => async (dispatch) => {
     try {
         const Token = localStorage.getItem("Token");
-        const response = await fetch("http://localhost:9595/cart", {
+        const response = await fetch("https://blueberry-backend-1.onrender.com/cart", {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${Token}`,
@@ -156,7 +167,7 @@ export const Cart_action = (product, quantity) => async (dispatch) => {
 export const cart_get_Acation = () => async (dispatch) => {
     try {
         const token = localStorage.getItem("Token");
-        const response = await fetch("http://localhost:9595/cart_get", {
+        const response = await fetch("https://blueberry-backend-1.onrender.com/cart_get", {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -165,22 +176,24 @@ export const cart_get_Acation = () => async (dispatch) => {
         });
 
         const res = await response.json();
+        console.log(res);
+
         if (response.ok) {
             dispatch({ type: "Cart_Get", payload: res.data });
             // toast.success("Cart fetched successfully.");
-        } else {
-            // toast.error("Cart fetch failed.");
+            // } else {
+            //     // toast.error("Cart fetch failed.");
         }
     } catch (error) {
         toast.error("Error fetching cart.");
         console.error("Cart get error:", error);
     }
-};
+}
 
 // Get Single Product
 export const single_action = (id) => async (dispatch) => {
     try {
-        const res = await fetch(`http://localhost:9595/single/${id}`, {
+        const res = await fetch(`https://blueberry-backend-1.onrender.com/single/${id}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" }
         });
@@ -195,7 +208,7 @@ export const single_action = (id) => async (dispatch) => {
 
 export const remove_action = (id) => async (dispatch) => {
     try {
-        const res = await fetch(`http://localhost:9595/remo/${id}`, {
+        const res = await fetch(`https://blueberry-backend-1.onrender.com/remo/${id}`, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" }
         });

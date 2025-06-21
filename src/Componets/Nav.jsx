@@ -17,14 +17,11 @@ function Nav() {
     const interval = setInterval(() => {
       const popclosed = sessionStorage.getItem("popclose");
       if (!popclosed) {
-        setoffcanvas(true);
+        setoffcanvas(true)
       }
     }, 2000);
-    return () => clearInterval(interval);
-  }, [])
-  useEffect(() => {
 
-    sessionStorage.removeItem("popclose");
+    return () => clearInterval(interval);
   }, []);
 
   const handleClose = () => {
@@ -50,11 +47,13 @@ function Nav() {
     setUserRole(role);
   }, []);
   const cartItems = useSelector(state => state.cart_get_items.cartItems || [])
+  // console.log(cartItems);
+
+
+
 
   useLayoutEffect(() => {
-    dispatch(cart_get_Acation()).then(() => {
-
-    })
+    dispatch(cart_get_Acation())
   }, [dispatch])
 
 
@@ -100,6 +99,8 @@ function Nav() {
   };
 
   const handleClosed = (id) => {
+    console.log(id);
+
 
     dispatch(remove_action(id)).then(() => {
       dispatch(cart_get_Acation())
@@ -257,7 +258,7 @@ function Nav() {
                     to="#"
                     className="px-4 py-2 hover:bg-gray-100 flex items-center gap-2 border-b"
                   >
-                    <img src="./icons8-location.gif" alt="location icon" className="w-5 h-5" />
+                    <img src="../icons8-location.gif" alt="location icon" className="w-5 h-5" />
                     {city}
                   </Link>
                 ))}
@@ -325,7 +326,7 @@ function Nav() {
           <div className="fixed h-screen w-full inset-0 bg-opacity-50 z-50 bg-black flex justify-center items-center">
             <div className="grid md:grid-cols-2 grid-cols-1 rounded-xl shadow-lg bg-white overflow-hidden w-[90%] max-w-2xl relative">
               <div className="md:block hidden">
-                <img src="./newsletter.jpg" alt="" className="h-full w-full object-cover" />
+                <img src="../newsletter.jpg" alt="" className="h-full w-full object-cover" />
               </div>
 
               <div className="relative ">
@@ -368,35 +369,46 @@ function Nav() {
             <h1>My Cart</h1>
             {cartItems.map((el) => (
               <div key={el._id} className="cart bg-[#F8F8FB]  text-black my-4 p-3 rounded-md shadow-sm relative">
-                <span className="absolute right-4 top-1 text-xl" onClick={() => handleClosed(el._id)}>x</span>
+                <span className="absolute right-4 top-1 text-xl cursor-pointer" onClick={() => handleClosed(el._id)}>x</span>
                 <div className="grid grid-cols-2 lg:grid-cols-3 md:grid-cols-3 gap-4 lg:justify-items-start md:justify-items-center items-center group">
 
-                  <div className="relative lg:w-[67%] md:w-full overflow-hidden h-[100px] ms-5">
-                    <img
-                      src={el.Product.image[0]}
-                      alt={el.Product.name}
-                      className="absolute z-10 h-full w-28 object-cover transform transition-all duration-700 group-hover:-translate-x-full"
-                    />
-                    <img
-                      src={el.Product.image[1]}
-                      alt={`${el.Product.name} back`}
-                      className="absolute z-0 h-full w-28 object-cover transform translate-x-full scale-100 transition-all duration-700 group-hover:translate-x-0 group-hover:scale-110"
-                    />
+                  <div className="relative lg:w-[67%] md:w-full overflow-hidden h-[100px] ms-5 group">
+                    {el.Product.image?.length >= 2 ? (
+                      <>
+                        <img
+                          src={el.Product.image[0]}
+                          alt={el.name}
+                          className="absolute z-10 h-full w-28 object-cover transform transition-all duration-700 group-hover:-translate-x-full"
+                        />
+                        <img
+                          src={el.Product.image[1]}
+                          alt={`${el.Product.name} back`}
+                          className="absolute z-0 h-full w-28 object-cover transform translate-x-full scale-100 transition-all duration-700 group-hover:translate-x-0 group-hover:scale-110"
+                        />
+                      </>
+                    ) : (
+                      <img
+                        src={el.Product?.image?.[0] || 'fallback.jpg'}
+                        alt={el.name}
+                        className="absolute z-10 h-full w-28 object-cover"
+                      />
+                    )}
                   </div>
 
+
                   <div className="flex flex-col justify-start items-start col-span-1 md:col-span-2">
-                    <h1 className="text-sm font-semibold">{el?.Product?.name}</h1>
-                    <span className="text-gray-600 font-semibold">${el?.Product?.price} x <span className="font-normal">{el.Product.weight} </span> </span>
+                    <h1 className="text-sm font-semibold">{el.Product.name}</h1>
+                    <span className="text-gray-600 font-semibold">${el.Product.price} x <span className="font-normal">{el.Product.weight} </span> </span>
 
                     <div className="flex items-center mt-2">
                       <span
                         className='cursor-pointer px-2 bg-gray-300 rounded'
-                        onClick={() => handleMinus(el?.Product?._id)}
+                        onClick={() => handleMinus(el.Product._id)}
                       >-</span>
-                      <span className="px-3">{quantity[el?.Product?._id] || 0}</span>
+                      <span className="px-3">{quantity[el.Product._id] || 0}</span>
                       <span
                         className='cursor-pointer px-2 bg-gray-300 rounded'
-                        onClick={() => handlePlus(el?.Product?._id)}
+                        onClick={() => handlePlus(el.Product._id)}
                       >+</span>
                     </div>
 

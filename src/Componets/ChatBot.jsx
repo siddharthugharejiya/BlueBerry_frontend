@@ -13,7 +13,7 @@ export function Chatbot() {
         setMessages((prev) => [...prev, userMsg]);
 
         try {
-            const res = await axios.post("http://localhost:9595/chat", { message: input });
+            const res = await axios.post("https://blueberry-backend-gwh0.onrender.com/chat", { message: input });
             const botMsg = { sender: "bot", text: res.data.reply };
             setMessages((prev) => [...prev, botMsg]);
         } catch (error) {

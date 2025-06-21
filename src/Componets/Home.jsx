@@ -800,7 +800,7 @@ function Home() {
                 </div>
 
                 <div className="h-full w-full flex justify-center items-center bg-gray-50 p-4">
-                  <div className="h-64 w-64 sm:h-4/5 sm:w-4/5 group ">
+                  {/* <div className="h-64 w-64 sm:h-4/5 sm:w-4/5 group ">
                     <img
                       src={eye.image[0]}
                       alt={eye.name}
@@ -811,7 +811,26 @@ function Home() {
                       alt={eye.name}
                       className="h-full w-full object-contain rounded-lg hidden group-hover:block"
                     />
+                  </div> */}
+                  <div className="relative h-64 w-64 sm:h-4/5 sm:w-4/5 overflow-hidden group">
+                    {/* Front Image */}
+                    <img
+                      src={eye.image[0]}
+                      alt={eye.name}
+                      className="absolute z-10 h-full w-full object-cover transform transition-all duration-700 group-hover:-translate-x-full"
+                    />
+
+                    {/* Back Image */}
+                    <img
+                      src={eye.image[1]}
+                      alt={`${eye.name} back`}
+                      className="absolute z-0 h-full w-full object-cover transform translate-x-full scale-100 transition-all duration-700 group-hover:translate-x-0 group-hover:scale-110"
+                    />
+
+                    {/* Optional: Glass Shine Effect */}
+                    <div className="absolute z-20 top-0 left-[-75%] w-[200%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent rotate-12 transition-all duration-700 group-hover:left-[100%] pointer-events-none" />
                   </div>
+
                 </div>
 
                 <div className="p-6 flex flex-col justify-between max-h-[95vh]">
