@@ -128,14 +128,14 @@ export const Prodcuer_Filter_Action = (category) => async (dispatch) => {
 
         // ✅ Check if no products found
         if (!data.success || data.data.length === 0) {
-            toast.info("No products found for this category.");
+            // toast.info("No products found for this category.");
             dispatch({ type: "FILTER_PRODUCTS_BY_CATEGORY", payload: [] });
         } else {
             dispatch({ type: "FILTER_PRODUCTS_BY_CATEGORY", payload: data.data });
         }
 
     } catch (err) {
-        toast.error("Something went wrong while filtering.");
+        // toast.error("Something went wrong while filtering.");
         console.error("Filter error:", err);
     }
 };
@@ -201,7 +201,7 @@ export const single_action = (id) => async (dispatch) => {
         dispatch({ type: "single", payload: data });
         // toast.success("Product details loaded.");
     } catch (err) {
-        toast.error("Failed to load product detail.");
+        // toast.error("Failed to load product detail.");
         console.error("Single action error:", err);
     }
 };

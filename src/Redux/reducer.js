@@ -139,3 +139,23 @@ export const singlepag_reducer = (state = singlepageinistaial, { type, payload }
         default: return state
     }
 }
+
+
+// reducers/loaderReducer.js
+
+const initialLoaderState = {
+    loading: false
+};
+
+export const loaderReducer = (state = initialLoaderState, action) => {
+    switch (action.type) {
+        case "LOADING_START":
+            return { loading: true };
+
+        case "LOADING_STOP":
+            return { loading: false };
+
+        default:
+            return state;
+    }
+};

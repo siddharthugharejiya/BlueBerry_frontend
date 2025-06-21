@@ -4,10 +4,10 @@ import { login_action } from '../Redux/action';
 import { Link, useNavigate } from 'react-router-dom';
 import Nav from './Nav';
 
-
 function Login() {
     const dispatch = useDispatch();
-    const nav = useNavigate()
+    const nav = useNavigate();
+
     const [state, setState] = useState({
         email: '',
         password: ''
@@ -15,7 +15,7 @@ function Login() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setState({ ...state, [name]: value });
+        setState(prev => ({ ...prev, [name]: value }));
     };
 
     const handleSubmit = (e) => {
@@ -27,13 +27,13 @@ function Login() {
         <>
             <Nav />
 
-
             <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-purple-200 to-blue-50 px-4">
                 <div className="bg-white shadow-lg rounded-3xl max-w-xl w-full p-10">
                     <div className="text-center mb-6">
                         <h2 className="text-4xl font-extrabold text-purple-700">Blueberry Login</h2>
                         <p className="text-sm text-gray-500 mt-2">Welcome back to the juiciest platform 🍇</p>
                     </div>
+
                     <form onSubmit={handleSubmit} className="space-y-5">
                         <div>
                             <label className="block text-gray-700 font-medium">Email</label>
@@ -42,6 +42,8 @@ function Login() {
                                 name="email"
                                 value={state.email}
                                 onChange={handleChange}
+                                required
+                                autoComplete="off"
                                 placeholder="you@blueberry.com"
                                 className="w-full mt-1 p-3 border border-purple-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400"
                             />
@@ -54,6 +56,8 @@ function Login() {
                                 name="password"
                                 value={state.password}
                                 onChange={handleChange}
+                                required
+                                autoComplete="off"
                                 placeholder="••••••••"
                                 className="w-full mt-1 p-3 border border-purple-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400"
                             />
@@ -69,14 +73,14 @@ function Login() {
 
                     <p className="text-sm text-center text-gray-500 mt-6">
                         Don't have an account?
-                        <Link to="/register" className="text-purple-600 hover:underline">
+                        <Link to="/register" className="text-purple-600 hover:underline ml-1">
                             Sign up
                         </Link>
                     </p>
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 export default Login;

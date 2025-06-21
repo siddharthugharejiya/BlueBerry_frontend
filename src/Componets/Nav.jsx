@@ -52,9 +52,11 @@ function Nav() {
 
 
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     dispatch(cart_get_Acation())
-  }, [dispatch])
+
+
+  }, [dispatch, cartItems.length])
 
 
 
@@ -99,7 +101,7 @@ function Nav() {
   };
 
   const handleClosed = (id) => {
-    console.log(id);
+    // console.log(id);
 
 
     dispatch(remove_action(id)).then(() => {

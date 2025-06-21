@@ -5,8 +5,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import Nav from './Nav';
 
 function Register() {
-    const dispatch = useDispatch()
-    const nav = useNavigate()
+    const dispatch = useDispatch();
+    const nav = useNavigate();
+
     const [state, setState] = useState({
         username: '',
         email: '',
@@ -16,25 +17,20 @@ function Register() {
     });
 
     const handleChange = (e) => {
-        const { name, value, type } = e.target;
-        // const inputValue = type === "radio" ? value : e.target.value;
-
-        setState({
-            ...state,
+        const { name, value } = e.target;
+        setState(prev => ({
+            ...prev,
             [name]: value
-        });
+        }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(register_action(state, nav))
-        // console.log(state);
-
+        dispatch(register_action(state, nav));
     };
 
     return (
         <>
-
             <Nav />
             <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-purple-200 to-blue-50 px-4">
                 <div className="bg-white shadow-lg rounded-3xl max-w-xl w-full p-10">
@@ -42,6 +38,7 @@ function Register() {
                         <h2 className="text-4xl font-extrabold text-purple-700">Blueberry Sign Up</h2>
                         <p className="text-sm text-gray-500 mt-2">Join the juiciest platform on the internet 🍇</p>
                     </div>
+
                     <form onSubmit={handleSubmit} className="space-y-5">
                         <div>
                             <label className="block text-gray-700 font-medium">Full Name</label>
@@ -50,6 +47,7 @@ function Register() {
                                 name="username"
                                 value={state.username}
                                 onChange={handleChange}
+                                autoComplete="off"
                                 placeholder="John Blueberry"
                                 className="w-full mt-1 p-3 border border-purple-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400"
                             />
@@ -62,6 +60,8 @@ function Register() {
                                 name="email"
                                 value={state.email}
                                 onChange={handleChange}
+                                autoComplete="off"
+                                required
                                 placeholder="you@blueberry.com"
                                 className="w-full mt-1 p-3 border border-purple-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400"
                             />
@@ -73,7 +73,9 @@ function Register() {
                                 type="password"
                                 name="password"
                                 value={state.password}
+                                required
                                 onChange={handleChange}
+                                autoComplete="off"
                                 placeholder="••••••••"
                                 className="w-full mt-1 p-3 border border-purple-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400"
                             />
@@ -88,6 +90,7 @@ function Register() {
                                         name="role"
                                         value="admin"
                                         checked={state.role === 'admin'}
+                                        required
                                         onChange={handleChange}
                                         className="accent-purple-500"
                                     />
@@ -100,29 +103,27 @@ function Register() {
                                         value="user"
                                         checked={state.role === 'user'}
                                         onChange={handleChange}
+                                        required
                                         className="accent-purple-500"
                                     />
                                     <span className="text-gray-700">User</span>
                                 </label>
-
-
                             </div>
-                            {
-                                state.role === "admin" &&
-                                <div>
 
-                                    <label className="block text-gray-700 font-medium">Secret key</label>
+                            {state.role === "admin" && (
+                                <div className="mt-4">
+                                    <label className="block text-gray-700 font-medium">Secret Key</label>
                                     <input
-                                        type="input"
+                                        type="text"
                                         name="key"
                                         value={state.key}
                                         onChange={handleChange}
+                                        autoComplete="off"
                                         placeholder="key..?"
                                         className="w-full mt-1 p-3 border border-purple-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400"
                                     />
-
                                 </div>
-                            }
+                            )}
                         </div>
 
                         <button

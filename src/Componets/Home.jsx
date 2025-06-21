@@ -16,6 +16,10 @@ import { useLayoutEffect } from 'react';
 import Footer from './Footer';
 import { useNavigate } from 'react-router-dom';
 import { Chatbot } from './ChatBot';
+import { toast } from "react-toastify";
+
+import 'react-toastify/dist/ReactToastify.css';
+import Loader from './Loader';
 
 function Home() {
 
@@ -216,13 +220,21 @@ function Home() {
 
 
   const AddToCart = (cart) => {
-
     const q = quantity[cart._id] || 1;
 
+    const isInCart = cartItems?.some(item => item.Product._id === cart._id);
 
-    dispatch(Cart_action(cart, q))
-
+    if (!isInCart) {
+      dispatch(Cart_action(cart, q)).then(() => {
+        dispatch(cart_get_Acation())
+      })
+    } else {
+      toast.error("Already in cart")
+      dispatch(cart_get_Acation())
+    }
+    // dispatch(cart_get_Acation())
   }
+
   const handleSinglePage = (id) => {
     // console.log(id);
     nav(`/single/${id}`)
@@ -232,6 +244,7 @@ function Home() {
 
   return (
     <>
+      {/* <Loader /> */}
       <Nav />
       <Chatbot />
 
