@@ -124,9 +124,6 @@ export const Prodcuer_Filter_Action = (category) => async (dispatch) => {
         const res = await fetch(url);
         const data = await res.json();
 
-        console.log("Filtered data:", data);
-
-        // ✅ Check if no products found
         if (!data.success || data.data.length === 0) {
             // toast.info("No products found for this category.");
             dispatch({ type: "FILTER_PRODUCTS_BY_CATEGORY", payload: [] });
@@ -158,7 +155,7 @@ export const Cart_action = (product, quantity) => async (dispatch) => {
         dispatch({ type: "Cart_ADD", payload: res });
         toast.success("Item added to cart.");
     } catch (err) {
-        toast.error("Error adding to cart.");
+        // toast.error("Error adding to cart.");
         console.error("Cart error:", err);
     }
 };
@@ -185,7 +182,7 @@ export const cart_get_Acation = () => async (dispatch) => {
             //     // toast.error("Cart fetch failed.");
         }
     } catch (error) {
-        toast.error("Error fetching cart.");
+        // toast.error("Error fetching cart.");
         console.error("Cart get error:", error);
     }
 }

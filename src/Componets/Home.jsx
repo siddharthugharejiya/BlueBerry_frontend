@@ -226,7 +226,7 @@ function Home() {
 
     if (!isInCart) {
       dispatch(Cart_action(cart, q)).then(() => {
-        dispatch(cart_get_Acation())
+        dispatch(cart_get_Acation())  
       })
     } else {
       toast.error("Already in cart")
