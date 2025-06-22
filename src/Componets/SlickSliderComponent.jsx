@@ -50,13 +50,18 @@ const SlickSliderComponent = () => {
             <div className="flex justify-center items-center">
               <div
                 className={`
-              w-full 
-              flex flex-col justify-center items-center 
-              border rounded-2xl group 
-              bg-[${index % 3 === 0 ? "rgb(225_252_242)" : index % 3 === 1 ? "rgb(244_241_254)" : "rgb(251_249_228)"}]
-              h-[140px] sm:h-[170px] md:h-[150px] lg:h-[200px] xl:h-[220px]
-            `}
+    w-full 
+    flex flex-col justify-center items-center 
+    border rounded-2xl group 
+    h-[140px] sm:h-[170px] md:h-[150px] lg:h-[200px] xl:h-[220px]
+    ${index % 3 === 0
+                    ? 'bg-[rgb(225,252,242)]'
+                    : index % 3 === 1
+                      ? 'bg-[rgb(244,241,254)]'
+                      : 'bg-[rgb(251,249,228)]'}
+  `}
               >
+
                 <img
                   src={`./${num}.svg`}
                   alt={`Slide ${num}`}
