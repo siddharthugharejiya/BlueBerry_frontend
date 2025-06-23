@@ -53,7 +53,7 @@ const SlickSliderComponent = () => {
     w-full 
     flex flex-col justify-center items-center 
     border rounded-2xl group 
-    h-[140px] sm:h-[140px] md:h-[150px] lg:h-[160px] xl:h-[220px]
+    h-[120px] sm:h-[140px] md:h-[150px] lg:h-[160px] xl:h-[220px]
     ${index % 3 === 0
                     ? 'bg-[rgb(225,252,242)]'
                     : index % 3 === 1

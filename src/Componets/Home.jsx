@@ -214,10 +214,10 @@ function Home() {
     setactiveTab(category)
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     dispatch(Product())
     dispatch(Producer_Filter_Action("All"))
-  }, [])
+  }, [dispatch])
 
 
   const AddToCart = (cart) => {
@@ -682,7 +682,14 @@ function Home() {
           </div>
         </div>
         {
-          products.length === 0 ? ("Product Not Found") :
+          products.length === 0 ?
+            <> <div className="text-center py-16" data-aos="zoom-in">
+              <div className="text-gray-300 text-5xl mb-4">
+                <i className="fa-solid fa-box-open"></i>
+              </div>
+              <h3 className="text-xl font-medium text-gray-500">No products found</h3>
+              {/* <p className="text-gray-400 mt-2">Try adjusting your filters or search</p> */}
+            </div></> :
             <>
               <div className='mt-5 overflow-hidden'>
                 <Slider {...settings1}>
