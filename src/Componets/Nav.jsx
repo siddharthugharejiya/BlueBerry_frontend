@@ -114,12 +114,18 @@ function Nav() {
     <div className="container mx-auto ">
       <nav className="flex justify-between items-center flex-wrap border-b-2 pb-2 p-3">
         {/* Logo */}
-        <Link to="/">
-          <div className="logo md:w-[280px]  w-full flex justify-between items-center ">
-            <img src="../logo.png" alt="Logo" className="w-min-[10px] h-auto" />
-            <i className="fa-solid fa-bars-staggered text-blue-600 text-2xl md:hidden block" onClick={() => setstate(true)}></i>
+        <Link to="/" className="w-full md:w-[30%]">
+          <div className="flex justify-between items-center w-full md:w-[280px]">
+            <img src="../logo.png" alt="Logo" className="h-auto max-h-12 w-auto" />
+
+            {/* Show hamburger menu icon only on small screens */}
+            <i
+              className="fa-solid fa-bars-staggered text-blue-600 text-2xl block md:hidden cursor-pointer"
+              onClick={() => setstate(true)}
+            ></i>
           </div>
         </Link>
+
 
         {/* Search */}
         <div className="flex justify-center w-full md:w-1/2 my-2 md:my-0">

@@ -11,7 +11,8 @@ import Slider from "react-slick";
 import SlickSliderComponent from './SlickSliderComponent';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Cart_action, cart_get_Acation, Prodcuer_Filter_Action, Product, single_action } from '../Redux/action';
+import { Cart_action, cart_get_Acation, Product, single_action } from '../Redux/action';
+import { Producer_Filter_Action } from '../Redux/action';
 import { useLayoutEffect } from 'react';
 import Footer from './Footer';
 import { useNavigate } from 'react-router-dom';
@@ -31,14 +32,14 @@ function Home() {
   const [fashion, setfashion] = useState("Miria")
   const [quantity, setquantity] = useState({})
   const nav = useNavigate()
-  useEffect(() => {
-    const mainText = document.getElementById("mainText");
-    const anim = document.querySelector("animateTransform");
+  // useEffect(() => {
+  //   const mainText = document.getElementById("mainText");
+  //   const anim = document.querySelector("animateTransform");
 
-    mainText.addEventListener("mouseenter", () => {
-      anim.beginElement();
-    });
-  }, []);
+  // //   mainText.addEventListener("mouseenter", () => {
+  // //     anim.beginElement();
+  // //   });
+  // // }, []);
   const formatTime = () => {
     // const mins = String(Math.floor(seconds / 60)).padStart(2, "0");
     const secs = String(seconds % 60).padStart(2, "0");
@@ -195,7 +196,7 @@ function Home() {
 
   const products = useSelector(state => state.Products?.data?.data ? state.Products.data.data : [])
   useEffect(() => {
-    dispatch(Prodcuer_Filter_Action("fruit"))
+    dispatch(Producer_Filter_Action("fruit"))
 
   }, [products])
   const handleEye = (product) => {
@@ -209,13 +210,13 @@ function Home() {
 
   const filtered = useSelector(state => state.Product_Filtered.data || [])
   const HandleCategoryes = (category) => {
-    dispatch(Prodcuer_Filter_Action(category))
+    dispatch(Producer_Filter_Action(category))
     setactiveTab(category)
   }
 
   useLayoutEffect(() => {
     dispatch(Product())
-    dispatch(Prodcuer_Filter_Action("All"))
+    dispatch(Producer_Filter_Action("All"))
   }, [])
 
 
@@ -542,24 +543,23 @@ function Home() {
         </Swiper >
       </div>
 
-      <div className='grid  2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 2xl:h-[125vh] xl:h-[152vh] lg:h-[166vh] md:h-auto sm:h-[160vh] h-[60vh] relative overflow-hidden my-3'
+      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 2xl:h-auto xl:h-auto lg:h-auto md:h-auto sm:h-auto h-auto relative overflow-hidden my-3'
       >
-        <div className=' min-h-[76%] 2xl:h-[80%] xl:h-[80%] lg:h-[96%] h-full w-full rounded-xl lg:flex justify-center items-center relative  hidden'>
-          <div className='h-auto 2xl:h-[90%] xl:h-[100%] lg:h-[65%] relative w-full' data-aos="fade-right">
-            {/* Main Image Container - maintains responsive behavior */}
+        <div className='max-h-[87%] w-full rounded-xl xl:flex justify-center items-center relative hidden'>
+
+          <div className='h-auto 2xl:h-[100%] xl:h-[100%] lg:h-[65%] relative w-full' data-aos="fade-right">
+
             <div className='relative w-full h-full'>
-              {/* Main Image */}
               <img
                 src="./category.jpg"
                 alt=""
                 className='w-full h-full rounded-3xl img-clip object-cover'
               />
 
-              {/* Top Right Shape - moves with main image */}
               <div className='
       absolute 
       right-0 
-      2xl:top-[56%] xl:top-[69%] lg:top-[58%] top-[65%]
+      2xl:top-[63%] xl:top-[64%] lg:top-[58%] top-[65%]
       2xl:right-[-1px] xl:right-[-1px]
     '>
                 <img
@@ -570,7 +570,6 @@ function Home() {
                 />
               </div>
 
-              {/* Bottom Center Shape - moves with main image */}
               <div className='
       absolute 
       bottom-0 
@@ -583,7 +582,6 @@ function Home() {
                 />
               </div>
 
-              {/* Discount Badge - fixed position relative to main image */}
               <span className='p-1 px-4 bg-[rgba(0,0,0,0.86)] rounded-full text-white opacity-80 absolute top-5 right-5'>
                 50% off
               </span>
@@ -592,7 +590,7 @@ function Home() {
         </div>
 
         <div className='h-[80vh] sm:h-screen w-full' >
-          <div className='sm:h-[55%] h-[35%] flex justify-center items-center' data-aos="fade-left">
+          <div className='sm:h-[55%] h-[50%] flex justify-center items-center' data-aos="fade-left">
             <svg width="100%" height="100%" viewBox="0 0 800 200" className="w-full group lg:h-[165vh] md:h-screen sm:h-[70vh] h-[66vh] ">
               <defs>
                 <linearGradient id="light-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -623,7 +621,7 @@ function Home() {
                 y="80"
                 className="fill-white xl:text-[123px] md:text-[130px] text-[140px] sm:text-[140px] stroke-black stroke-[1px] font-bold transition-all duration-500"
                 fontFamily="Arial"
-                // style={{ fontSize: "140px" }}
+
                 id="mainText"
               >
                 <tspan x="30%" dy="40">Explore</tspan>
@@ -651,11 +649,11 @@ function Home() {
             <div className='absolute 
           xl:left-[27%] 
           xl:w-[72%]
-          lg:left-[27%] 
+          lg:left-[5%] 
           lg:w-[78%]
           md:left-[0%] 
           md:w-[99%]
-          sm:left-[4%] left-[0%] 
+          sm:left-[0%] left-[0%] 
           sm:w-full
           mt-7
           w-[99%]'>

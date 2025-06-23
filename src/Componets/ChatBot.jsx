@@ -26,7 +26,7 @@ export function Chatbot() {
     };
 
     return (
-        <div className="fixed bottom-5 right-5 z-50">
+        <div className="fixed bottom-4 right-4 z-50 max-w-full sm:max-w-[90vw]">
             {!showChat && (
                 <button
                     onClick={() => setShowChat(true)}
@@ -37,7 +37,7 @@ export function Chatbot() {
             )}
 
             {showChat && (
-                <div className="sm:w-80 w-60 h-96 bg-white rounded-lg shadow-lg flex flex-col border border-gray-200">
+                <div className="w-[90vw] sm:w-80 h-[80vh] max-h-[500px] bg-white rounded-lg shadow-lg flex flex-col border border-gray-200">
                     {/* Header */}
                     <div className="bg-blue-600 text-white p-3 flex justify-between items-center rounded-t-lg">
                         <div className="flex items-center space-x-2">
@@ -53,7 +53,7 @@ export function Chatbot() {
                     </div>
 
                     {/* Messages */}
-                    <div className="flex-1 p-3 overflow-y-auto bg-gray-50 space-y-2">
+                    <div className="flex-1 p-3 overflow-y-auto bg-gray-50 space-y-2 scroll-smooth">
                         {messages.length === 0 && (
                             <div className="text-center text-gray-500 h-full flex items-center justify-center">
                                 Ask me anything!
@@ -64,7 +64,7 @@ export function Chatbot() {
                                 key={i}
                                 className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
                             >
-                                <div className={`max-w-[80%] px-3 py-2 rounded-lg ${msg.sender === "user"
+                                <div className={`max-w-[80%] px-3 py-2 rounded-lg text-sm break-words ${msg.sender === "user"
                                     ? "bg-blue-500 text-white"
                                     : "bg-gray-200 text-gray-800"
                                     }`}>
@@ -80,16 +80,16 @@ export function Chatbot() {
                             <input
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
-                                onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-                                className="flex-1 sm:px-3 px-0 py-2 focus:outline-none"
+                                onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+                                className="flex-1 px-2 py-2 text-sm sm:text-base focus:outline-none"
                                 placeholder="Type your message..."
                             />
                             <button
                                 onClick={sendMessage}
                                 disabled={!input}
-                                className={`px-3 py-2 ${input
-                                    ? "bg-blue-600 text-white"
-                                    : "bg-gray-200 text-gray-500"
+                                className={`px-3 py-2 text-white ${input
+                                    ? "bg-blue-600 hover:bg-blue-700"
+                                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
                                     }`}
                             >
                                 <FiSend className="w-5 h-5" />

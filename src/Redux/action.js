@@ -115,28 +115,21 @@ export const product_edite_action = (id, state) => async (dispatch) => {
 };
 
 // Product Filter
-export const Prodcuer_Filter_Action = (category) => async (dispatch) => {
+export const Producer_Filter_Action = (category) => async (dispatch) => {
     try {
-        const url = category === "All"
-            ? `https://blueberry-backend-1.onrender.com/product`
-            : `https://blueberry-backend-1.onrender.com/product?category=${category}`;
+        const response = await fetch(`https://blueberry-backend-1.onrender.com/product${category === "All" ? "" : `?category=${category}`}`)
 
-        const res = await fetch(url);
-        const data = await res.json();
+        const result = await response.json();
 
-        if (!data.success || data.data.length === 0) {
-            // toast.info("No products found for this category.");
-            dispatch({ type: "FILTER_PRODUCTS_BY_CATEGORY", payload: [] });
-        } else {
-            dispatch({ type: "FILTER_PRODUCTS_BY_CATEGORY", payload: data.data });
-        }
+        dispatch({
+            type: "FILTER_PRODUCTS_BY_CATEGORY",
+            payload: result.success && result.data ? result.data : []
+        });
 
-    } catch (err) {
-        // toast.error("Something went wrong while filtering.");
-        console.error("Filter error:", err);
+    } catch (error) {
+        console.error("Filter error:", error)
     }
-};
-
+}
 
 // Add to Cart
 export const Cart_action = (product, quantity) => async (dispatch) => {
