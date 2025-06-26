@@ -543,11 +543,11 @@ function Home() {
         </Swiper >
       </div>
 
-      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 2xl:h-auto xl:h-auto lg:h-auto md:h-auto sm:h-auto h-auto relative overflow-hidden my-3'
+      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 2xl:h-auto sm:min-h-[110vh] 2xl:min-h-[160vh]  min-h-[60vh] max-h-screen xl:h-auto lg:h-auto md:h-auto sm:h-auto h-auto relative overflow-hidden my-3'
       >
         <div className='max-h-[87%] w-full rounded-xl xl:flex justify-center items-center relative hidden'>
 
-          <div className='h-auto 2xl:h-[100%] xl:h-[100%] lg:h-[65%] relative w-full' data-aos="fade-right">
+          <div className='h-auto max-h-[74%] 2xl:h-[100%] xl:h-[100%] lg:h-[65%] relative w-full' data-aos="fade-right">
 
             <div className='relative w-full h-full'>
               <img
@@ -559,7 +559,8 @@ function Home() {
               <div className='
       absolute 
       right-0 
-      2xl:top-[63%] xl:top-[64%] lg:top-[58%] top-[65%]
+    
+      2xl:top-[76%] xl:top-[64%] lg:top-[58%] top-[65%]
       2xl:right-[-1px] xl:right-[-1px]
     '>
                 <img
@@ -589,9 +590,9 @@ function Home() {
           </div>
         </div>
 
-        <div className='h-[80vh] sm:h-screen w-full' >
-          <div className='sm:h-[55%] h-[50%] flex justify-center items-center' data-aos="fade-left">
-            <svg width="100%" height="100%" viewBox="0 0 800 200" className="w-full group lg:h-[165vh] md:h-screen sm:h-[70vh] h-[66vh] ">
+        <div className='h-auto w-full' >
+          <div className='sm:h-[60%] h-[40%] flex justify-center items-center' data-aos="fade-left">
+            <svg width="100%" height="100%" viewBox="0 0 800 200" className="w-full group lg:h-[165vh] md:h-screen sm:h-[70vh] h-[66vh] cursor-pointer ">
               <defs>
                 <linearGradient id="light-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="white" stopOpacity="0" />
@@ -619,7 +620,7 @@ function Home() {
                 textAnchor="middle"
                 x="50%"
                 y="80"
-                className="fill-white xl:text-[123px] md:text-[130px] text-[140px] sm:text-[140px] stroke-black stroke-[1px] font-bold transition-all duration-500"
+                className="fill-white xl:text-[123px] md:text-[130px] text-[140px] sm:text-[120px] stroke-black stroke-[1px] font-bold transition-all duration-500"
                 fontFamily="Arial"
 
                 id="mainText"
@@ -812,7 +813,7 @@ function Home() {
             <div className="fixed inset-0 bg-black opacity-40 z-50"></div>
             <div className="transition-all duration-700 fixed top-0 left-0 h-screen w-full z-50 flex justify-center items-center overflow-auto p-4 animate-fade-in">
               <div className="grid sm:grid-cols-2 grid-cols-1 bg-white rounded-xl shadow-2xl overflow-auto w-full max-w-4xl max-h-[95vh] relative ">
-                <div className='absolute right-5 top-0 overflow-hidden p-4'>
+                <div className='absolute sm:right-5 right-5 top-0 overflow-hidden p-4 z-50'>
 
                   <button className='text-[20px] hover:animate-ping mt-0' onClick={handleClose}>x</button>
                 </div>
